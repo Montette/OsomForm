@@ -428,3 +428,60 @@ h1 {
     @media screen and (max-width: 768px) {
       .form__button {
         margin: 0 20px 10px 0; } }
+
+.modal {
+  position: absolute;
+  max-width: 90%;
+  width: 500px;
+  height: 200px;
+  background-color: #fefefe;
+  z-index: 1000;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -300%);
+          transform: translate(-50%, -300%);
+  -webkit-transition: .3s;
+  transition: .3s;
+  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+  border-radius: 3px;
+  border: 1px solid grey;
+  padding: 0 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+
+.modal-button {
+  margin-left: 128px;
+  background-color: #2a61b3;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 11px 8px 11px;
+  width: 60px;
+  -ms-flex-item-align: end;
+      align-self: flex-end; }
+
+.bcg-modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 900;
+  background-color: rgba(57, 63, 69, 0.5);
+  visibility: hidden; }
+
+.active2 {
+  visibility: visible; }
+
+.active {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
+
+.bcg {
+  background-color: rgba(57, 63, 69, 0.5); }

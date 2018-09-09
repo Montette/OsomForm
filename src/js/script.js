@@ -82,4 +82,13 @@
 
         document.addEventListener('DOMContentLoaded', displayCities)
          
-    
+    document.querySelector('.form__button').addEventListener('click', ()=> {
+        document.querySelector('.modal').classList.add('active');
+        document.querySelector('.bcg-modal').classList.add('active2');
+        
+    });
+
+    document.querySelector('.modal-button').addEventListener('click', ()=> {
+        document.querySelector('.modal').classList.remove('active');
+        document.querySelector('.bcg-modal').classList.remove('active2');
+    })
