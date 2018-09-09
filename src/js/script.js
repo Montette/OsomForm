@@ -83,12 +83,12 @@
         document.addEventListener('DOMContentLoaded', displayCities)
          
     document.querySelector('.form__button').addEventListener('click', ()=> {
-        document.querySelector('.modal').classList.add('active');
-        document.querySelector('.bcg-modal').classList.add('active2');
+        document.querySelector('.modal__container').classList.add('modal-visible');
+        document.querySelector('.modal').classList.add('background-visible');
         
     });
 
-    document.querySelector('.modal-button').addEventListener('click', ()=> {
-        document.querySelector('.modal').classList.remove('active');
-        document.querySelector('.bcg-modal').classList.remove('active2');
+    document.querySelector('.modal__button').addEventListener('click', ()=> {
+        document.querySelector('.modal__container').classList.remove('modal-visible');
+        document.querySelector('.modal').classList.remove('background-visible');
     })
