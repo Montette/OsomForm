@@ -86,7 +86,10 @@
                 display: flex;
                 justify-content: flex-end;
                 padding-right: 10px;
-                font-size: 16px;
+                font-size: 16px;       
+            }
+            & td.table__idtd{
+                border-bottom-color: lighten($darkGrey, 30%);
             }
             & td:before {
                 position: absolute;
@@ -114,6 +117,13 @@
             content: "Email:";
         }
         & td:nth-of-type(6):before {
-            content: "ID: ";
+            content: "ID:";
+            
+
         }
+        
+        // :before {
+        //     content: "ID: ";
+        //     border-bottom-color: $darkGrey;
+        // }
     }

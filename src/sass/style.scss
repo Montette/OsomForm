@@ -28,9 +28,9 @@ $navyBlue: #2a61b3;
 
 @import 'surveys';
 @import 'normalize';
+
 body {
     background-color: #fefefe;
-    font-family: 'Roboto', sans-serif;
     color: $darkGrey;
     font-family: 'Elenar-Book';
 }
@@ -181,6 +181,9 @@ body {
         flex-direction: column;
         &.modal-visible {
             transform: translate(-50%, -120%);
+            @media screen and (max-width: 768px) {
+                transform: translate(-50%, -70%);
+            }
         }
     }
     &__header {
