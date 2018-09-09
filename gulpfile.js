@@ -26,7 +26,7 @@ gulp.task('browserSync', function () {
 
   gulp.task('sass', () => {
     return gulp.src('src/sass/**/*.scss')
-    .pipe(sass()) // Converts Sass to CSS 
+    .pipe(sass()) 
     .pipe(autoprefixer('last 2 version'))
     .pipe(gulp.dest('src/css'))
     .pipe(browserSync.reload({
@@ -47,8 +47,6 @@ gulp.task('browserSync', function () {
     .pipe(gulp.dest('dist/fonts'))
   })
 
-
-
   gulp.task('watch', ['browserSync', 'sass'], () => {
     gulp.watch('src/sass/**/*.scss', ['sass']);
     gulp.watch('src/*.html', browserSync.reload);
@@ -65,7 +63,6 @@ gulp.task('browserSync', function () {
 
   gulp.task('scripts', function () {
     return gulp.src(['src/js/*.js'])
-    // .pipe(concat('main.min.js'))
     .pipe(babili({
       mangle: {
         keepClassNames: true

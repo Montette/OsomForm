@@ -1,40 +1,33 @@
 $grey: #B9B9B9;
-// $darkGrey: rgb(48, 48, 48);
 $darkGrey: #393f45;
 $navyBlue: #2a61b3;
-// $navyBlue: #20499b;
-
-
 @mixin border {
     border: 1px solid lighten($darkGrey, 60%);
-};
+}
+
+;
 @mixin button {
-    margin-left: 128px; 
+    margin-left: 128px;
     background-color: $navyBlue;
     color: #fff;
     border: none;
     border-radius: 3px;
-    padding:  10px 11px 8px 11px;
-    box-shadow: 0 2px 0 darken($navyBlue, 7%), 0 2px 4px 1px rgba(0,0,0,0.4);
+    padding: 10px 11px 8px 11px;
+    box-shadow: 0 2px 0 darken($navyBlue, 7%), 0 2px 4px 1px rgba(0, 0, 0, 0.4);
     &:hover {
-        background-color: darken($navyBlue,5%);
-        box-shadow: 0 2px 0 darken($navyBlue, 10%), 0 2px 4px 1px rgba(0,0,0,0.4);
+        background-color: darken($navyBlue, 5%);
+        box-shadow: 0 2px 0 darken($navyBlue, 10%), 0 2px 4px 1px rgba(0, 0, 0, 0.4);
         cursor: pointer;
     }
 }
-
-
 
 @font-face {
     font-family: "Elenar-Book";
     src: url("../fonts/Elenar-Book.otf") format('OpenType');
 }
 
-
 @import 'surveys';
 @import 'normalize';
-
-
 body {
     background-color: #fefefe;
     font-family: 'Roboto', sans-serif;
@@ -46,32 +39,28 @@ body {
     box-sizing: border-box;
 }
 
-
-
 .container {
     padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  
 }
 
 .main-title {
     font-family: 'Elenar-Book';
     font-size: 20px;
     margin-top: 20px;
-    
 }
 
 .logoImg {
     width: 250px;
     max-width: 100%;
 }
+
 .form {
-  
     font-size: 13px;
-    padding: 7px 10px;
+    padding: 8px 10px;
     display: flex;
     max-width: 880px;
     width: 100%;
@@ -79,95 +68,89 @@ body {
     @include border;
     position: relative;
     &__column {
-        flex: 1;  
-       
-        
+        flex: 1;
         @media screen and (max-width: 768px) {
             width: 100%;
             flex: none;
             text-align: right;
-        }     
+        }
     }
     &__label {
         display: block;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
         margin-top: 7px;
         font-weight: bold;
         color: darken($darkGrey, 5%);
         @media screen and (max-width: 768px) {
             text-align: left;
-        
         }
         &--checkbox {
             text-align: right;
-            padding-right: 70px;      
-            margin-bottom: 10px;      
+            padding-right: 70px;
+            margin-bottom: 10px;
             @media screen and (max-width: 930px) {
                 padding-right: 35px;
-                
             }
             @media screen and (max-width: 768px) {
-                padding: 0 5px;;
-                
+                padding: 0 5px;
+                ;
             }
-            
         }
     }
     &__input {
         display: block;
+        padding-left: 5px;
+        color: $darkGrey;
         background-color: #fdfcfc;
         margin-top: 5px;
         height: 30px;
-        border-radius:3px;
+        border-radius: 3px;
         @include border;
         width: 197px;
+        &:required {
+            box-shadow: none;
+        }
         @media screen and (max-width: 768px) {
             width: 100%;
-            
-        } 
+        }
         &.warning-input {
             border-bottom: 1px solid #B82323
-        }   
-        
+        }
         &--checkbox {
             display: inline-block;
             height: 13px;
             width: 13px;
             margin-right: 5px;
-           
-                 
         }
     }
     &__select {
-        display:block;
+        display: block;
         margin-top: 5px;
-        height:30px;
+        height: 30px;
         width: 197px;
-        border-radius:3px;
+        border-radius: 3px;
         background-color: #fdfcfc;
         color: $darkGrey;
         @include border;
         @media screen and (max-width: 768px) {
             width: 100%;
-            
         }
     }
     &__agreement-text {
+        display:block;
         margin-bottom: 0;
         margin-top: 8px;
         text-align: left;
         line-height: 18px;
-        color: lighten( $darkGrey, 8% );   
+        color: lighten( $darkGrey, 8%);
     }
     &__button {
         @include button;
         @media screen and (max-width: 768px) {
             margin: 0 20px 10px 0;
-            
         }
     }
 }
-
 
 .modal {
     position: fixed;
@@ -181,75 +164,55 @@ body {
     &.background-visible {
         visibility: visible;
     }
-
     &__container {
         position: absolute;
-        max-width: 90%;  
+        max-width: 90%;
         width: 600px;
-        // height: 220px;
         background-color: #fefefe;
         z-index: 1000;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -800%);
         transition: .3s;
-        box-shadow:  0 0 50px rgba(0,0,0,.7);
+        box-shadow: 0 0 50px rgba(0, 0, 0, .7);
         border-radius: 5px;
         border: 1px solid grey;
-        // padding: 10px 40px;;
         display: flex;
         flex-direction: column;
-        // border: 2px solid darken($navyBlue, 5%);
-        &.modal-visible{
+        &.modal-visible {
             transform: translate(-50%, -120%);
         }
     }
     &__header {
         background-color: #eeeeee;
-       
-        height:55px;
+        height: 55px;
         border-bottom: 1px solid lighten($darkGrey, 65%);
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        padding-left:10px;
-        
+        padding-left: 10px;
     }
     &__body {
-
-        // display: flex;
-        // flex-direction: column;
         padding: 20px;
         border-bottom: 1px solid lighten($darkGrey, 65%);
-        // justify-content: space-between;
-        
     }
     &__footer {
         text-align: right;
         padding: 15px;
-        
-
-        
     }
     &__title {
-        // line-height: 15px;
         padding-left: 5px;
         display: inline-block;
-        
     }
     &__icon {
-        width:23px;
+        width: 23px;
         display: inline-block;
         margin-bottom: 5px;
     }
     &__button {
         @include button;
-        // display: inline-block;
-        // vertical-align: middle;
         width: 60px;
-        // vertical-align: middle;
     }
-
 }
 
 .validate-warning {
@@ -259,9 +222,6 @@ body {
     font-size: 12px;
     display: none;
     &.visible-warning {
-        display:block;
+        display: block;
     }
 }
-
-
-

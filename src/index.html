@@ -7,88 +7,68 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&amp;subset=latin-ext" rel="stylesheet">
     <!--build:css css/styles.min.css-->
-   
     <link rel="stylesheet" href="css/style.css">
-   
     <!-- endbuild -->
-    <title>Document</title>
+    <title>OSOM Studio contact form</title>
 </head>
 
 <body>
-
-
-     <div class="modal">
-     <div class="modal__container">
-         <div class="modal__header">
-             <img class="modal__icon" src="images/info.svg" alt="">
-         <h4 class="modal__title">Consectetur adipisicing!</h4>
-        </div>
+    <div class="modal">
+        <div class="modal__container">
+            <div class="modal__header">
+                <img class="modal__icon" src="images/info.svg" alt="">
+                <h4 class="modal__title">Consectetur adipisicing!</h4>
+            </div>
             <div class="modal__body">
-         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit sedi diam nonummy nich eulsmod.</p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit sedi diam nonummy nich eulsmod.</p>
+            </div>
+            <div class="modal__footer">
+                <button class="modal__button">OK</button>
+            </div>
         </div>
-         <div class="modal__footer">
-         <button class="modal__button">OK</button>
-        </div>
-        
-     </div>
     </div>
-
     <div class="container">
-
         <div class="logo">
-           <img class="logoImg"src="images/logo.jpg" alt="">
+            <img class="logoImg" src="images/logo.jpg" alt="OSOM Studio">
         </div>
         <h1 class="main-title">Wypełnij formularz</h1>
         <form action="" class="form">
-
             <div class="form__column">
                 <label class="form__label">First name:
                     <input class="form__input" type="text" id="firstName" name="firstName" required>
-                    <p id="nameValidateText" class="validate-warning">The name must consist only of the alphabet characters</p>
+                    <span class="validate-warning">The name must consist only of the alphabet characters</span>
                 </label>
-
-
                 <label class="form__label"> Last name:
                     <input class="form__input" type="text" id="lastName" name="lastName" required>
-                    <p id="nameValidateText" class="validate-warning">The last name must consist only of the alphabet characters</p>
+                    <span class="validate-warning">The last name must consist only of the alphabet characters</span>
                 </label>
-
                 <label class="form__label"> Login:
                     <input class="form__input" type="text" id="login" name="login" required>
-                    <p id="nameValidateText" class="validate-warning">Please enter your login</p>
+                    <span class="validate-warning">Please enter your login</span>
                 </label>
             </div>
             <div class="form__column">
                 <label class="form__label"> E-mail:
                     <input class="form__input" type="email" id="email" name="email" required>
-                    <p id="nameValidateText" class="validate-warning">Please enter a valid email address</p>
+                    <span class="validate-warning">Please enter a valid email address</span>
                 </label>
-
-
                 <label class="form__label"> City
                     <select class="form__select" id="city" name="city"></select>
                 </label>
-
                 <button class="form__button button">Wyślij</button>
             </div>
             <div class="form__column">
                 <label class="form__label form__label--checkbox">
-                    <p class="form__agreement-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit, sedi diam nonummy nich eulsmod tincidunt ut laoree dolore magna allequam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tatlon ullamoorper susolpit lobortis nisl ut aliquip ex ea commodo consequat. 
-                    </p>
+                    <span class="form__agreement-text"> Lorem, ipsum dolor sit amet consectetur adipisicing elit, sedi diam nonummy nich eulsmod tincidunt ut
+                        laoree dolore magna allequam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tatlon
+                        ullamoorper susolpit lobortis nisl ut aliquip ex ea commodo consequat.
+                    </span>
                     <input class="form__input form__input--checkbox" type="checkbox" required>Agree
                 </label>
             </div>
-
-
-
         </form>
-        <a href="surveys.html">Surveys</a>
     </div>
-
-  
     <script src='js/script.js'></script>
-
-   
 </body>
 
 </html>
