@@ -1,11 +1,16 @@
 h2 {
     color: red;
 }
-
+.table-container {
+    padding: 0 20px;
+    overflow-x: auto;
+}
 .table {
     margin: 25px auto;
+    
     box-shadow: 0 0 20px rgba(0, 0, 0, .2);
     border-collapse: collapse;
+    table-layout: fixed;
     // border: 1px solid lighten($darkGrey, 50%);
     @include border;
     border-bottom: 2px solid $navyBlue;
@@ -25,9 +30,15 @@ h2 {
         color: lighten($darkGrey, 30%);
         @include border;
         padding: 12px 35px;
+        font-size: 16px;
         border-collapse: collapse;
-        &.table__idtd{
+        text-wrap: wrap;
+        @media only screen and(max-width: 1084px){
             padding: 12px 15px;
+            font-size: 12px;
+        }
+        &.table__idtd{
+            padding: 12px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -68,4 +79,66 @@ h2 {
 .modal__button.modal__button--surveys {
     margin: 0 10px;
     width: auto;
+}
+
+// (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+// @media only screen and(max-width: 1084px) {
+//     .table th, .table.td {
+
+//     }
+// }
+@media 
+only screen and (max-width: 760px) {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+    
+    .table {
+	& td,  td.table__idtd { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+        position: relative;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 10px;
+        font-size: 16px;
+		// padding-left: 50%; 
+	}
+	
+	& td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+        top: 50%;
+        transform: translateY(-50%);
+		left: 10px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+    }
+}
+	
+	/*
+	Label the data
+	*/
+	& td:nth-of-type(1):before { content: "First Name:"; }
+	& td:nth-of-type(2):before { content: "Last Name:"; }
+	& td:nth-of-type(3):before { content: "Login:"; }
+	& td:nth-of-type(4):before { content: "City:"; }
+    & td:nth-of-type(5):before { content: "Email:"; }
+    & td:nth-of-type(6):before { content: "ID: "; }
+
 }
