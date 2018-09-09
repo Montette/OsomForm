@@ -1,3 +1,71 @@
 h2 {
     color: red;
 }
+
+.table {
+    margin: 25px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    border-collapse: collapse;
+    // border: 1px solid lighten($darkGrey, 50%);
+    @include border;
+    border-bottom: 2px solid $navyBlue;
+
+    tr {
+        &:hover {
+            background: lighten($darkGrey, 70%);
+
+            td {
+                color: $darkGrey;
+            }
+        }
+    }
+
+    th,
+    td {
+        color: lighten($darkGrey, 30%);
+        @include border;
+        padding: 12px 35px;
+        border-collapse: collapse;
+        &.table__idtd{
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    th {
+        background: $navyBlue;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 12px;
+
+    }
+
+    // &__idtd {
+    //    display: flex;
+    //    justify-content: space-between;
+    //    align-items: center;
+    //    padding: 12px 0;
+    // }
+
+    &__remove-button {
+        
+        font-size: 10px;
+        
+        margin-left: 15px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.modal__footer.modal__footer--surveys {
+    text-align: center;
+    // display: flex;
+}
+
+.modal__button.modal__button--surveys {
+    margin: 0 10px;
+    width: auto;
+}

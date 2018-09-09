@@ -1,5 +1,56 @@
+@font-face {
+  font-family: "Elenar-Book";
+  src: url("../fonts/Elenar-Book.otf") format("OpenType"); }
+
 h2 {
   color: red; }
+
+.table {
+  margin: 25px auto;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+  border: 1px solid #d4d8dc;
+  border-bottom: 2px solid #2a61b3; }
+  .table tr:hover {
+    background: #f0f2f3; }
+    .table tr:hover td {
+      color: #393f45; }
+  .table th,
+  .table td {
+    color: #818c97;
+    border: 1px solid #d4d8dc;
+    padding: 12px 35px;
+    border-collapse: collapse; }
+    .table th.table__idtd,
+    .table td.table__idtd {
+      padding: 12px 15px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
+  .table th {
+    background: #2a61b3;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px; }
+  .table__remove-button {
+    font-size: 10px;
+    margin-left: 15px; }
+    .table__remove-button:hover {
+      cursor: pointer; }
+
+.modal__footer.modal__footer--surveys {
+  text-align: center; }
+
+.modal__button.modal__button--surveys {
+  margin: 0 10px;
+  width: auto; }
 
 /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
 /* Document
@@ -303,10 +354,6 @@ template {
  */
 [hidden] {
   display: none; }
-
-@font-face {
-  font-family: "Elenar-Book";
-  src: url("../fonts/Elenar-Book.otf") format("OpenType"); }
 
 body {
   background-color: #fefefe;

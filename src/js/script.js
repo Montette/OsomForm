@@ -1,80 +1,55 @@
-//         function sortAlphabetically (a,b) {
-//             if (a.city < b.city)
-//                 return -1;
-//             if (a.city > b.city)
-//                 return 1;
-//             return 0;
-//         };
+        function sortAlphabetically (a,b) {
+            if (a.city < b.city)
+                return -1;
+            if (a.city > b.city)
+                return 1;
+            return 0;
+        };
 
 
-//         function displayCities(cities) {
-//             cities.sort(sortAlphabetically);
-//             console.log(cities);
-//             const options = document.querySelector('#city-select');
-//             cities.forEach(city => {
-//                 const option = document.createElement('option');
-//                 option.innerHTML = city.city;
-//                 option.value = city.city
-//                 options.appendChild(option)
+        function displayCities(cities) {
+            cities.sort(sortAlphabetically);
+            console.log(cities);
+            const options = document.querySelector('#city');
+            cities.forEach(city => {
+                const option = document.createElement('option');
+                option.innerHTML = city.city;
+                option.value = city.city
+                options.appendChild(option)
+
+            })
+
+        }
 
 
-//             })
+  function fetchForCities () {
 
-//             console.log(cities);
-//             console.log(testCities);
-//         }
+        let cities = [];
 
+        const requestOffsets = [1,11,21,31,41,51];
 
-//   function fetchForCities () {
-
-//         let cities = [];
-
-//         const requestOffsets = [1,11,21,31,41,51];
-
-//             Promise.all(
-//                 requestOffsets.map(offset => 
-//                 fetch(   `https://wft-geo-db.p.mashape.com/v1/geo/countries/PL/regions/LD/cities?minPopulation=2025&offset=${offset}&limit=10`, {
-//                     headers: new Headers({
-//                         "X-Mashape-Key": "jGFiACuqUmmshdbzTerBFXkUMmLFp1eSONIjsnrzszoIv8eyuw"
-//                     })  
-//                 })
-//                 .then(response => response.json())
-//                 .then(responseData => {
-//                   console.log(responseData);
-//                   cities = cities.concat(responseData.data);
-//                   return cities  
-//                 })
-//                 .catch(err => /* handle errors here */ console.error(err))
-//               )
-//             )
-//             .then(()=> displayCities(cities))
+            Promise.all(
+                requestOffsets.map(offset => 
+                fetch(   `https://wft-geo-db.p.mashape.com/v1/geo/countries/PL/regions/LD/cities?minPopulation=2025&offset=${offset}&limit=10`, {
+                    headers: new Headers({
+                        "X-Mashape-Key": "jGFiACuqUmmshdbzTerBFXkUMmLFp1eSONIjsnrzszoIv8eyuw"
+                    })  
+                })
+                .then(response => response.json())
+                .then(responseData => {
+                  console.log(responseData);
+                  cities = cities.concat(responseData.data);
+                  return cities  
+                })
+                .catch(err => /* handle errors here */ console.error(err))
+              )
+            )
+            .then(()=> displayCities(cities))
 
 
-//         }
+        }
 
 
-//             document.addEventListener('DOMContentLoaded', fetchForCities);
-
-
-
-
-function displayCities() {
-
-
-    const cities = ["Andrespol", "Bełchatów", "Biała Rawska", "Brzeziny", "Błaszki", "Drzewica", "Działoszyn", "Gorzkowice", "Głowno", "Głuchów", "Kamieńsk", "Koluszki", "Konstantynów Łódzki", "Krośniewice", "Ksawerów", "Kutno", "Moszczenica", "Opoczno", "Ozorków", "Pabianice", "Pajęczno", "Piotrków Trybunalski", "Piątek", "Poddębice", "Przedbórz", "Pęczniew", "Radomsko", "Rawa Mazowiecka", "Rzeczyca", "Rzgów", "Sadkowice", "Sieradz", "Skierniewice", "Stryków", "Sulejów", "Szczerców", "Tomaszów Mazowiecki", "Tuszyn", "Uniejów", "Warta", "Wieluń", "Wieruszów", "Wola Krzysztoporska", "Wolbórz", "Zduńska Wola", "Zelów", "Zgierz", "Złoczew", "Łask", "Łowicz", "Łódź", "Łęczyca", "Żychlin"];
-
-    const options = document.querySelector('#city');
-    cities.forEach(city => {
-        const option = document.createElement('option');
-        option.innerHTML = city;
-        option.value = city;
-        options.appendChild(option)
-
-
-    })
-
-
-}
 
 
 const stringPattern = /^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+(?:[\s-][a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+)*$/i;
@@ -85,10 +60,6 @@ const requiredInputs = document.querySelectorAll('[required]');
 
 
 
-const sendData = () => {
-
-}
-
 const showConfirmationModal = () => {
 
 
@@ -97,6 +68,39 @@ const showConfirmationModal = () => {
 
 
 }
+
+const formToJSON = elements => [...elements].reduce((obj, element) => {
+    if(element.name) {
+    obj[element.name] = element.value;
+    }
+    return obj;
+  
+  }, {});
+
+
+
+const sendData = () => {
+    const url = 'https://osomform.firebaseio.com/users.json';
+    const form = document.querySelector('.form');
+    let data = null;
+    data = formToJSON(form.elements);
+    console.log(data);
+    fetch(url, {
+        method: 'post',
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify(data)
+
+    })
+    .then(res => res.json())
+        .then(res => {
+            console.log('zapisano');
+            showConfirmationModal();
+        })
+}
+
+
 
 
 const showFieldValidation = (input, inputIsValid) => {
@@ -194,8 +198,7 @@ const checkFormBeforeSending = (event) => {
     })
     if (formIsCorrect) {
         sendData();
-        // showConfirmationModal();
-
+    
     } else {
         return false;
 
@@ -212,7 +215,7 @@ document.querySelector('.modal__button').addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    displayCities();
+    fetchForCities();
     validateForm();
     loadFromLocalStorage()
 })

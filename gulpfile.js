@@ -65,7 +65,7 @@ gulp.task('browserSync', function () {
 
   gulp.task('scripts', function () {
     return gulp.src(['src/js/*.js'])
-    .pipe(concat('main.min.js'))
+    // .pipe(concat('main.min.js'))
     .pipe(babili({
       mangle: {
         keepClassNames: true
