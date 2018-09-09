@@ -43,26 +43,30 @@
 
             <div class="form__column">
                 <label class="form__label">First name:
-                    <input class="form__input" type="text" id="firstName" required>
+                    <input class="form__input" type="text" id="firstName" name="firstName" required>
+                    <p id="nameValidateText" class="validate-warning">The name must consist only of the alphabet characters</p>
                 </label>
 
 
                 <label class="form__label"> Last name:
-                    <input class="form__input" type="text" id="lastName" required>
+                    <input class="form__input" type="text" id="lastName" name="lastName" required>
+                    <p id="nameValidateText" class="validate-warning">The last name must consist only of the alphabet characters</p>
                 </label>
 
                 <label class="form__label"> Login:
-                    <input class="form__input" type="text" id="login" required>
+                    <input class="form__input" type="text" id="login" name="login" required>
+                    <p id="nameValidateText" class="validate-warning">Please enter your login</p>
                 </label>
             </div>
             <div class="form__column">
                 <label class="form__label"> E-mail:
-                    <input class="form__input" type="text" id="email" required>
+                    <input class="form__input" type="email" id="email" name="email" required>
+                    <p id="nameValidateText" class="validate-warning">Please enter a valid email address</p>
                 </label>
 
 
                 <label class="form__label"> City
-                    <select class="form__select" id="citySelect"></select>
+                    <select class="form__select" id="city" name="city"></select>
                 </label>
 
                 <button class="form__button button">Wyślij</button>

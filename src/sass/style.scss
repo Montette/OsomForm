@@ -122,7 +122,10 @@ body {
         @media screen and (max-width: 768px) {
             width: 100%;
             
-        }    
+        } 
+        &.warning-input {
+            border-bottom: 1px solid #B82323
+        }   
         
         &--checkbox {
             display: inline-block;
@@ -247,6 +250,16 @@ body {
 
 }
 
+.validate-warning {
+    color: #B82323;
+    margin-top: 5px;
+    width: 197px;
+    font-size: 12px;
+    display: none;
+    &.visible-warning {
+        display:block;
+    }
+}
 
 
 
