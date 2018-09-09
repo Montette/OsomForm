@@ -12,47 +12,60 @@
 
 <body>
 
-    <!-- <label for="pet-select">Choose a city:</label>
 
-<select id="city-select">
-
-</select>
-     -->
-
+     <div class="modal">
+     <div class="modal__container">
+         <div class="modal__header">
+             <img class="modal__icon" src="images/info.svg" alt="">
+         <h4 class="modal__title">Consectetur adipisicing!</h4>
+        </div>
+            <div class="modal__body">
+         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit sedi diam nonummy nich eulsmod.</p>
+        </div>
+         <div class="modal__footer">
+         <button class="modal__button">OK</button>
+        </div>
+        
+     </div>
+    </div>
 
     <div class="container">
 
         <div class="logo">
            <img class="logoImg"src="images/logo.jpg" alt="">
         </div>
-        <h1>Wypełnij formularz</h1>
+        <h1 class="main-title">Wypełnij formularz</h1>
         <form action="" class="form">
 
             <div class="form__column">
                 <label class="form__label">First name:
-                    <input class="form__input" type="text" id="firstName">
+                    <input class="form__input" type="text" id="firstName" name="firstName" required>
+                    <p id="nameValidateText" class="validate-warning">The name must consist only of the alphabet characters</p>
                 </label>
 
 
                 <label class="form__label"> Last name:
-                    <input class="form__input" type="text" id="lastName">
+                    <input class="form__input" type="text" id="lastName" name="lastName" required>
+                    <p id="nameValidateText" class="validate-warning">The last name must consist only of the alphabet characters</p>
                 </label>
 
                 <label class="form__label"> Login:
-                    <input class="form__input" type="text" id="login">
+                    <input class="form__input" type="text" id="login" name="login" required>
+                    <p id="nameValidateText" class="validate-warning">Please enter your login</p>
                 </label>
             </div>
             <div class="form__column">
                 <label class="form__label"> E-mail:
-                    <input class="form__input" type="text" id="email">
+                    <input class="form__input" type="email" id="email" name="email" required>
+                    <p id="nameValidateText" class="validate-warning">Please enter a valid email address</p>
                 </label>
 
 
                 <label class="form__label"> City
-                    <select class="form__select" id="citySelect"></select>
+                    <select class="form__select" id="city" name="city"></select>
                 </label>
 
-                <button class="form__button">Wyślij</button>
+                <button class="form__button button">Wyślij</button>
             </div>
             <div class="form__column">
                 <label class="form__label form__label--checkbox">
@@ -68,7 +81,10 @@
         <a href="surveys.html">Surveys</a>
     </div>
 
-    <script src="js/main.min.js"></script>
+  
+    <script src='js/script.js'></script>
+
+   
 </body>
 
 </html>
