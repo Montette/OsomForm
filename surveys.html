@@ -10,27 +10,22 @@
 </head>
 
 <body>
-
-        <div class="modal">
-                <div class="modal__container">
-                    <div class="modal__header">
-                        <img class="modal__icon" src="images/info.svg" alt="">
-                    <h4 class="modal__title">Deleting user</h4>
-                   </div>
-                       <div class="modal__body">
-                    <p>Are you sure you want to delete this user?</p>
-                   </div>
-                    <div class="modal__footer modal__footer--surveys">
-                    <button id="cancelDeletingButton" class="modal__button modal__button--surveys">CANCEL</button>
-                    <button id="confirmDeletingButton" class="modal__button modal__button--surveys">OK</button>
-                   </div>
-                   
-                </div>
-               </div>
-    <h2>surveys</h2>
-
-    <div class="container">
-
+    <div class="modal">
+        <div class="modal__container">
+            <div class="modal__header">
+                <img class="modal__icon" src="images/info.svg" alt="">
+                <h4 class="modal__title">Deleting user</h4>
+            </div>
+            <div class="modal__body">
+                <p>Are you sure you want to delete this user?</p>
+            </div>
+            <div class="modal__footer modal__footer--surveys">
+                <button id="cancelDeletingButton" class="modal__button modal__button--surveys">CANCEL</button>
+                <button id="confirmDeletingButton" class="modal__button modal__button--surveys">OK</button>
+            </div>
+        </div>
+    </div>
+    <div class="table-container">
         <table class='table'>
             <thead>
                 <tr>
@@ -43,15 +38,26 @@
                 </tr>
             </thead>
             <tbody>
-       
             </tbody>
         </table>
-
     </div>
-
-   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.min.js"></script>
+    <script id="usersTemplate" type="text/x-handlebars-template">
+        <tr>
+            <td>{{firstName}}</td>
+            <td>{{lastName}}</td>
+            <td>{{login}}</td>
+            <td>{{city}}</td>
+            <td>{{email}}</td>
+            <td class="table__idtd">
+                <span>{{id}}</span>
+                <div role="button" class="table__remove-button">
+                    <img class="modal__icon" src="images/trash.svg" alt="">
+                </div>
+            </td>
+        </tr>
+    </script>
     <script src='js/surveys.js'></script>
-
 </body>
 
 </html>
