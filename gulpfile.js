@@ -13,6 +13,8 @@ const babili = require("gulp-babili");
 var del = require('del');
 var runSequence = require('run-sequence').use(gulp);
 const autoprefixer = require('gulp-autoprefixer');
+var babel = require('gulp-babel');
+var polyfiller = require('gulp-polyfiller');
 
 //Tasks definitions
 
@@ -61,18 +63,41 @@ gulp.task('browserSync', function () {
   });
 
 
+ 
+
+  // gulp.task('scripts', function() {
+  //        return gulp.src( [ 
+  //                'node_modules/babel-polyfill/dist/polyfill.js', 'src/js/*.js'
+  //                      ])       
+  //                      .pipe(babel({presets: ['es2015']}))
+                       
+  //   .pipe(babili({
+  //     mangle: {
+  //       keepClassNames: true
+  //     }
+  //   }))
+  //   .on('error', function (err) {
+  //     gutil.log(gutil.colors.red('[Error]'), err.toString());
+  //   })
+       
+  //                      .pipe(gulp.dest('dist/js')) });
+
+
   gulp.task('scripts', function () {
-    return gulp.src(['src/js/*.js'])
-    .pipe(babili({
-      mangle: {
-        keepClassNames: true
-      }
-    }))
+    return gulp.src(['node_modules/babel-polyfill/dist/polyfill.js', 'src/js/*.js'])
+    .pipe(babel({presets: ['es2015']}))
+    .pipe(polyfiller(['Promise', 'Fetch']))
     .on('error', function (err) {
       gutil.log(gutil.colors.red('[Error]'), err.toString());
     })
     .pipe(gulp.dest('dist/js'));
   })
+
+  gulp.task('deafult', function () {
+    polyfiller
+        .bundle(['Promise', 'Fetch'])
+        .pipe(gulp.dest('polyfills.js'));
+});
 
   gulp.task('clean:dist', () => {
     return del.sync('dist');
@@ -85,6 +110,6 @@ gulp.task('browserSync', function () {
   })
 
   gulp.task('build', function (callback) {
-    runSequence('clean:dist', ['serve', 'images', 'fonts'], 'useref', 'scripts',
+    runSequence('clean:dist','useref', 'scripts',
       callback)
  })

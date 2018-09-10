@@ -1,8 +1,18 @@
+
 (function () {
+
+    
 
     let elementToRemove;
 
     const removeRow = (element) => {
+        if (!('remove' in Element.prototype)) {
+            Element.prototype.remove = function() {
+                if (this.parentNode) {
+                    this.parentNode.removeChild(this);
+                }
+            };
+        }
         element.remove();
     }
 
@@ -19,13 +29,14 @@
         );
     }
 
-    showModalToRemove = (element) => {
+    const showModalToRemove = (element) => {
         document.querySelector('.modal__container').classList.add('modal-visible');
         document.querySelector('.modal').classList.add('background-visible');
     }
 
     const addListenersToButtons = () => { // add listener to each removing button
-        document.querySelectorAll('.table__remove-button').forEach(button => {
+        const buttons = document.querySelectorAll('.table__remove-button');
+        [...buttons].forEach(button => {
             button.addEventListener('click', (event) => {
                 elementToRemove = event.currentTarget.parentElement.querySelector('span'); //after click, set element which will be removing and show modal with removing confirmation
                 showModalToRemove();

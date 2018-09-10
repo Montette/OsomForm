@@ -1,4 +1,7 @@
+
+
 (function () {
+   
 
     const stringPattern = /^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+(?:[\s-][a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+)*$/i,
         mailPattern = /^[0-9a-zA-Z_.-]+@[0-9a-zA-Z.-]+\.[a-zA-Z]{2,3}$/i,
@@ -127,13 +130,21 @@
     }
 
     const saveToLocalStorage = (input) => {
+        if(typeof localStorage !== 'undefined') {
         localStorage.setItem(input.name, input.value);
+        } else {
+            return
+        }
     }
 
     const loadFromLocalStorage = () => {
-        [...requiredInputs].forEach(input => {
-            input.value = localStorage.getItem(input.name);
-        })
+        if (typeof localStorage !== 'undefined') {
+            [...requiredInputs].forEach(input => {
+                input.value = localStorage.getItem(input.name);
+            })
+        } else {
+            return
+    }
     }
 
     const validateForm = () => {
