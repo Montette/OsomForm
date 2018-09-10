@@ -15,7 +15,7 @@
     function displayCities(cities) {
         cities.sort(sortAlphabetically);
         const options = document.querySelector('#city');
-        cities.forEach(city => {
+        cities.forEach(city => { // create options fo each fetched city
             const option = document.createElement('option');
             option.innerHTML = city.city;
             option.value = city.city
@@ -27,7 +27,7 @@
         let cities = [];
         const requestOffsets = [1, 11, 21, 31, 41, 51];
         Promise.all(
-                requestOffsets.map(offset =>
+                requestOffsets.map(offset => //due to API restrictions response can return max 10 results, so I has to makse 6 calls to get all cities
                     fetch(`https://wft-geo-db.p.mashape.com/v1/geo/countries/PL/regions/LD/cities?minPopulation=2025&offset=${offset}&limit=10`, {
                         headers: new Headers({
                             "X-Mashape-Key": "jGFiACuqUmmshdbzTerBFXkUMmLFp1eSONIjsnrzszoIv8eyuw"
@@ -44,7 +44,7 @@
                     })
                     .then(responseData => {
                         cities = cities.concat(responseData.data);
-                        return cities
+                        return cities //with every iteration add new cities to cities array
                     })
                     .catch(err => console.log(err))
                 )
@@ -57,8 +57,8 @@
         document.querySelector('.modal').classList.add('background-visible');
     }
 
-    const formToJSON = elements => [...elements].reduce((obj, element) => {
-        if (element.name) {
+    const formToJSON = elements => [...elements].reduce((obj, element) => {//transform nodeList of form inputs into array and then into JSOn format
+        if (element.name) { 
             obj[element.name] = element.value;
         }
         return obj;
@@ -68,7 +68,7 @@
     const sendData = () => {
         const url = 'https://osomform.firebaseio.com/users.json';
         const form = document.querySelector('.form');
-        let data = null;
+        let data = null; // reset sending data before every new request
         data = formToJSON(form.elements);
         fetch(url, {
                 method: 'post',
@@ -79,12 +79,12 @@
             })
             .then(res => res.json())
             .then(res => {
-                showConfirmationModal();
+                showConfirmationModal(); // if data will be send succesfully, show modal with confirmation
             })
             .catch(err => console.log(err))
     }
 
-    const showFieldValidation = (input, inputIsValid) => { //show red warning if input is fill uncorrectly
+    const showFieldValidation = (input, inputIsValid) => { //show red warning text if input is fill uncorrectly
         if (inputIsValid == false) {
             input.classList.add('warning-input');
             if (input.nextElementSibling !== null) {
@@ -100,18 +100,18 @@
 
     const validateInput = (input, reg) => {
         let inputIsValid = true;
-        if (reg !== undefined) { // if we don't have a regex to check, check only if input isn't blank
+        if (reg !== undefined) { // if we have regex to check, check if value match to it 
             if (!reg.test(input.value) || input.value === '') {
                 inputIsValid = false;
             }
-        } else {
+        } else { // but if we don't have a regex check only if input isn't empty
             if (input.value === '') {
                 inputIsValid = false;
             }
         }
 
         if (inputIsValid) {
-            showFieldValidation(input, true);
+            showFieldValidation(input, true);// if input isn't valid run func. showing warning
             return true;
         } else {
             showFieldValidation(input, false);
@@ -130,19 +130,19 @@
     }
 
     const validateForm = () => {
-        [...requiredInputs].forEach(input => {
+        [...requiredInputs].forEach(input => { // add listeners to all required inputs, to tunr on validation checking during filling it by user
             if (input.nodeName.toLowerCase() === 'input') {
                 input.addEventListener('change', () => {
                     saveToLocalStorage(event.target);
                 })
                 if (input.type == 'text' && input.name !== 'login') {
                     input.addEventListener('input', (event) => {
-                        validateInput(event.target, stringPattern);
+                        validateInput(event.target, stringPattern); // validate with regex
                     })
                 }
                 if (input.name == 'login') {
                     input.addEventListener('change', (event) => {
-                        validateInput(event.target, undefined);
+                        validateInput(event.target, undefined); // or without regex
                     })
                 }
                 if (input.type == 'email') {
@@ -154,7 +154,7 @@
         })
     }
 
-    const checkFormBeforeSending = (event) => {
+    const checkFormBeforeSending = (event) => { // check form once again before sending data to server
         event.preventDefault();
         let formIsCorrect = true;
         [...requiredInputs].forEach(input => {
@@ -168,7 +168,7 @@
                     formIsCorrect = false;
                 }
                 if (inputType == 'checkbox' && !input.checked) {
-                    formIsCorrect = false;
+                    formIsCorrect = false; // apart of inputs values, check also if checkbox is checked
                 }
             }
         })
@@ -184,14 +184,14 @@
         document.querySelector('.modal').classList.remove('background-visible');
     })
 
-    document.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('.form').addEventListener('submit', (event) => {
+        checkFormBeforeSending(event);
+    })
+
+    document.addEventListener('DOMContentLoaded', () => { // after DOM is loaded, fetch for cities, start to validating form and load data from local storage
         fetchForCities();
         validateForm();
         loadFromLocalStorage()
-    })
-
-    document.querySelector('.form').addEventListener('submit', (event) => {
-        checkFormBeforeSending(event);
     })
 
 })()

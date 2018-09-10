@@ -7,14 +7,14 @@
     }
 
     const removeUser = () => {
-        let id = elementToRemove.textContent;
-        let element = elementToRemove.parentElement.parentElement;
+        let id = elementToRemove.textContent; //get if of removing user
+        let element = elementToRemove.parentElement.parentElement; // and find it's parent row
         fetch(`https://osomform.firebaseio.com/users/${id}.json`, {
-            method: 'delete'
+            method: 'delete' 
         }).then(response =>
             response.json()
             .then(json => {
-                removeRow(element)
+                removeRow(element) //after deleting user from database, remove it also from HTML
             })
         );
     }
@@ -24,10 +24,10 @@
         document.querySelector('.modal').classList.add('background-visible');
     }
 
-    const addListenersToButtons = () => {
+    const addListenersToButtons = () => { // add listener to each removing button
         document.querySelectorAll('.table__remove-button').forEach(button => {
             button.addEventListener('click', (event) => {
-                elementToRemove = event.currentTarget.parentElement.querySelector('span');
+                elementToRemove = event.currentTarget.parentElement.querySelector('span'); //after click, set element which will be removing and show modal with removing confirmation
                 showModalToRemove();
             })
         })
@@ -35,14 +35,14 @@
 
     const displayUsers = (data) => {
         const tableBody = document.querySelector('tbody');
-        if (!data) return;
-        let usersArray = Object.keys(data).map((key) => {
+        if (!data) return; // stop if we don't have any user yet, don't iterate on empty object
+        let usersArray = Object.keys(data).map((key) => { // change object of objects into array of objects
             let item = data[key];
             item.id = key;
             return item
         });
 
-        const source = document.getElementById('usersTemplate').innerHTML,
+        const source = document.getElementById('usersTemplate').innerHTML, //create handlebars template
             template = Handlebars.compile(source);
         let context, content = '';
 
@@ -55,9 +55,9 @@
                 email: user.email,
                 id: user.id
             }
-            content += template(context);
+            content += template(context); //add user data to template after each iteration on users list
         })
-        tableBody.insertAdjacentHTML('beforeend', content);
+        tableBody.insertAdjacentHTML('beforeend', content); //in the end inject data into table in HTML doc.
         addListenersToButtons()
     }
 
@@ -86,10 +86,10 @@
     }
 
     document.querySelector('.modal__footer--surveys').addEventListener('click', (event) => {
-        if (event.target.id === 'cancelDeletingButton') {
+        if (event.target.id === 'cancelDeletingButton') { // add listeners do modal buttons
             closeModal()
         } else if (event.target.id === 'confirmDeletingButton') {
-            removeUser(event);
+            removeUser(event); 
             closeModal()
         }
     })
