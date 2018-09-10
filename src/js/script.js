@@ -52,9 +52,11 @@
             .then(() => displayCities(cities))
     }
 
-    const showConfirmationModal = () => {
+    const showConfirmationModal = (information) => {
         document.querySelector('.modal__container').classList.add('modal-visible');
         document.querySelector('.modal').classList.add('background-visible');
+        document.querySelector('.modal__information').innerHTML = information;
+
     }
 
     const formToJSON = elements => [...elements].reduce((obj, element) => {//transform nodeList of form inputs into array and then into JSOn format
@@ -66,6 +68,8 @@
     }, {});
 
     const sendData = () => {
+        const successInfo = 'Dane zostały zapisane pomyślnie. Na podany adres e-mail wysłaliśmy potwierdzenie rejestracji';
+        const failInfo = 'Wystąpił błąd z połączeniem. Spróbuj ponownie później.';
         const url = 'https://osomform.firebaseio.com/users.json';
         const form = document.querySelector('.form');
         let data = null; // reset sending data before every new request
@@ -79,9 +83,12 @@
             })
             .then(res => res.json())
             .then(res => {
-                showConfirmationModal(); // if data will be send succesfully, show modal with confirmation
+                showConfirmationModal(successInfo); // if data will be send succesfully, show modal with confirmation
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err);
+                showConfirmationModal(failInfo) // if something went wrong show modal with this info  
+            })
     }
 
     const showFieldValidation = (input, inputIsValid) => { //show red warning text if input is fill uncorrectly

@@ -34,6 +34,8 @@
     }
 
     const displayUsers = (data) => {
+        const warningInfo = document.querySelector('.warning-info');
+        if(warningInfo) warningInfo.remove(); //remove info about warning if it is
         const tableBody = document.querySelector('tbody');
         if (!data) return; // stop if we don't have any user yet, don't iterate on empty object
         let usersArray = Object.keys(data).map((key) => { // change object of objects into array of objects
@@ -45,7 +47,6 @@
         const source = document.getElementById('usersTemplate').innerHTML, //create handlebars template
             template = Handlebars.compile(source);
         let context, content = '';
-
         usersArray.forEach((user) => {
             context = {
                 firstName: user.firstName,
@@ -61,6 +62,12 @@
         addListenersToButtons()
     }
 
+    const showInfoWithWarning = () => {
+        const warning = document.createElement('p');
+        warning.innerHTML = "There is a connection error, unable to load data.";
+        warning.classList.add('warning-info');
+        document.querySelector('.table-container').appendChild(warning);
+    }
 
     const fetchForUsers = () => {
         const url = 'https://osomform.firebaseio.com/users.json';
@@ -77,7 +84,10 @@
             .then(resp => {
                 displayUsers(resp)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err);
+                showInfoWithWarning();//in spite of error, show display this info
+            } )
     }
 
     const closeModal = () => {

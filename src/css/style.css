@@ -59,6 +59,12 @@
     margin: 0 10px;
     width: auto; }
 
+.warning-info {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 60px;
+  color: #B82323; }
+
 @media only screen and (max-width: 760px) {
   table,
   thead,

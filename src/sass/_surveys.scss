@@ -60,6 +60,13 @@
     }
 
 }
+
+.warning-info {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 60px;
+    color: $darkRed;
+}
     @media only screen and (max-width: 760px) {
         table,
         thead,
@@ -122,8 +129,4 @@
 
         }
         
-        // :before {
-        //     content: "ID: ";
-        //     border-bottom-color: $darkGrey;
-        // }
     }
