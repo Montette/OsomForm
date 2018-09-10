@@ -1,6 +1,6 @@
 
 
-(function () {
+if(document.body.getAttribute('data-page') ==='form') {(function () {
    
 
     const stringPattern = /^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+(?:[\s-][a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+)*$/i,
@@ -213,3 +213,4 @@
     })
 
 })()
+}

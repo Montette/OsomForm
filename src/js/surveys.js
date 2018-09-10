@@ -1,5 +1,5 @@
 
-(function () {
+if(document.body.getAttribute('data-page') ==='surveys') {(function () {
 
     
 
@@ -21,25 +21,44 @@
         let element = elementToRemove.parentElement.parentElement; // and find it's parent row
         fetch(`https://osomform.firebaseio.com/users/${id}.json`, {
             method: 'delete' 
-        }).then(response =>
-            response.json()
-            .then(json => {
-                removeRow(element) //after deleting user from database, remove it also from HTML
-            })
-        );
+        }).then(response => {
+                if(response.ok) {
+                    response.json()
+                }else {
+                    throw new Error(err => console.log(error))
+                }
+            }
+        ).then(json => {
+            removeRow(element) //after deleting user from database, remove it also from HTML
+        })
+        .catch(err => {
+            const errorMessage = 'There is a connection error. User cannot be removed in this moment. Please try again later.';
+            console.log(err);
+            showModal(errorMessage, true);
+        })
     }
 
-    const showModalToRemove = (element) => {
+    const showModal= (message, isError) => {
+        // let text = message ==='undefined' ? 'Are you sure you want to remove this user?': message;
+
+        if (isError) {
+            document.querySelector('#confirmDeletingButton').style.display ='none';
+        } else {
+            document.querySelector('#confirmDeletingButton').style.display ='inline';
+        }
         document.querySelector('.modal__container').classList.add('modal-visible');
         document.querySelector('.modal').classList.add('background-visible');
+        document.querySelector('.modal__text').innerHTML = message;
+
     }
 
     const addListenersToButtons = () => { // add listener to each removing button
         const buttons = document.querySelectorAll('.table__remove-button');
         [...buttons].forEach(button => {
             button.addEventListener('click', (event) => {
+                const message = 'Are you sure you want to remove this user?';
                 elementToRemove = event.currentTarget.parentElement.querySelector('span'); //after click, set element which will be removing and show modal with removing confirmation
-                showModalToRemove();
+                showModal(message, false);
             })
         })
     }
@@ -118,3 +137,4 @@
     document.addEventListener('DOMContentLoaded', fetchForUsers)
 
 })()
+}

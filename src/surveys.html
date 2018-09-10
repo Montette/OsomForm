@@ -11,7 +11,7 @@
     <!-- endbuild -->
 </head>
 
-<body>
+<body data-page="surveys">
     <div class="modal">
         <div class="modal__container">
             <div class="modal__header">
@@ -19,7 +19,7 @@
                 <h4 class="modal__title">Deleting user</h4>
             </div>
             <div class="modal__body">
-                <p>Are you sure you want to delete this user?</p>
+                <p class="modal__text">Are you sure you want to delete this user?</p>
             </div>
             <div class="modal__footer modal__footer--surveys">
                 <button id="cancelDeletingButton" class="modal__button modal__button--surveys">CANCEL</button>
@@ -60,7 +60,11 @@
             </td>
         </tr>          
     </script>
-    <script src='js/surveys.js'></script>
+       <!-- build:js js/main.min.js -->
+       <script src='js/surveys.js'></script>
+    
+
+       <!-- endbuild -->
 </body>
 
 </html>
