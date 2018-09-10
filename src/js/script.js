@@ -84,14 +84,14 @@
             .catch(err => console.log(err))
     }
 
-    const showFieldValidation = (input, inputIsValid) => {
+    const showFieldValidation = (input, inputIsValid) => { //show red warning if input is fill uncorrectly
         if (inputIsValid == false) {
             input.classList.add('warning-input');
             if (input.nextElementSibling !== null) {
                 input.nextElementSibling.classList.add('visible-warning');
             }
         } else {
-            input.classList.remove('warning-input');
+            input.classList.remove('warning-input'); //if input is ok, remove warning
             if (input.nextElementSibling !== null) {
                 input.nextElementSibling.classList.remove('visible-warning');
             }
@@ -100,7 +100,7 @@
 
     const validateInput = (input, reg) => {
         let inputIsValid = true;
-        if (reg !== undefined) {
+        if (reg !== undefined) { // if we don't have a regex to check, check only if input isn't blank
             if (!reg.test(input.value) || input.value === '') {
                 inputIsValid = false;
             }

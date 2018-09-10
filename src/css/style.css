@@ -584,12 +584,8 @@ body {
         -ms-flex-direction: column;
             flex-direction: column; }
     .modal__container.modal-visible {
-      -webkit-transform: translate(-50%, -120%);
-              transform: translate(-50%, -120%); }
-      @media screen and (max-width: 768px) {
-        .modal__container.modal-visible {
-          -webkit-transform: translate(-50%, -70%);
-                  transform: translate(-50%, -70%); } }
+      -webkit-transform: translate(-50%, -25vh);
+              transform: translate(-50%, -25vh); }
   .modal__header {
     background-color: #eeeeee;
     height: 55px;

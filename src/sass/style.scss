@@ -180,10 +180,7 @@ body {
         display: flex;
         flex-direction: column;
         &.modal-visible {
-            transform: translate(-50%, -120%);
-            @media screen and (max-width: 768px) {
-                transform: translate(-50%, -70%);
-            }
+            transform: translate(-50%, -25vh);
         }
     }
     &__header {
