@@ -7,7 +7,7 @@ if(document.body.getAttribute('data-page') ==='form') {(function () {
         mailPattern = /^[0-9a-zA-Z_.-]+@[0-9a-zA-Z.-]+\.[a-zA-Z]{2,3}$/i,
         requiredInputs = document.querySelectorAll('[required]');
 
-    function sortAlphabetically(a, b) {
+    const sortAlphabetically = (a, b) => {
         if (a.city < b.city)
             return -1;
         if (a.city > b.city)
@@ -15,7 +15,7 @@ if(document.body.getAttribute('data-page') ==='form') {(function () {
         return 0;
     };
 
-    function displayCities(cities) {
+    const displayCities = (cities) => {
         cities.sort(sortAlphabetically);
         const options = document.querySelector('#city');
         cities.forEach(city => { // create options fo each fetched city
@@ -26,7 +26,7 @@ if(document.body.getAttribute('data-page') ==='form') {(function () {
         })
     }
 
-    function fetchForCities() {
+    const fetchForCities = () => {
         let cities = [];
         const requestOffsets = [1, 11, 21, 31, 41, 51];
         Promise.all(

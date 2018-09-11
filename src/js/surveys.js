@@ -1,8 +1,6 @@
-
 if(document.body.getAttribute('data-page') ==='surveys') {(function () {
 
     
-
     let elementToRemove;
 
     const removeRow = (element) => {
